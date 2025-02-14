@@ -1,29 +1,55 @@
-import { Link } from "@heroui/link";
+import {
+  HelpIcon,
+  PeopleIcon,
+  PieChartIcon,
+  SettingsIcon,
+} from "@/components/icons";
+import Nav from "@/components/nav/nav";
+import { ThemeSwitch } from "@/components/theme-switch";
+import clsx from "clsx";
 
-import { Navbar } from "@/components/navbar";
-
-export default function DefaultLayout({
-  children,
-}: {
+interface DefaultLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function DefaultLayout(props: DefaultLayoutProps) {
+  const { children } = props;
   return (
-    <div className="relative flex flex-col h-screen">
-      <Navbar />
-      <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
+    <div className="relative flex">
+      <Nav>
+        <Nav.Title />
+
+        <ul className="mt-12 flex flex-col gap-1">
+          <li>
+            <Nav.Link to="/">
+              <PieChartIcon size={20} /> Dashboard
+            </Nav.Link>
+          </li>
+
+          <li>
+            <Nav.Link to="/employees">
+              <PeopleIcon size={20} /> Employees
+            </Nav.Link>
+          </li>
+
+          <li>
+            <Nav.Link to="/settings">
+              <SettingsIcon size={20} /> Settings
+            </Nav.Link>
+          </li>
+
+          <li>
+            <Nav.Link to="/help">
+              <HelpIcon size={20} /> Help
+            </Nav.Link>
+          </li>
+        </ul>
+      </Nav>
+
+      <div className={clsx("flex flex-col px-8")}>
+        <ThemeSwitch className="absolute top-7 right-5" />
         {children}
-      </main>
-      <footer className="w-full flex items-center justify-center py-3">
-        <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
-          href="https://heroui.com"
-          title="heroui.com homepage"
-        >
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">HeroUI</p>
-        </Link>
-      </footer>
+      </div>
     </div>
   );
 }
