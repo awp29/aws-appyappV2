@@ -23,12 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
-bun.lockb
-
 # amplify
 .amplify
 amplify_outputs*
