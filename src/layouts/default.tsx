@@ -14,8 +14,9 @@ interface DefaultLayoutProps {
 
 export default function DefaultLayout(props: DefaultLayoutProps) {
   const { children } = props;
+
   return (
-    <div className="relative flex">
+    <div className="relative flex w-full">
       <Nav>
         <Nav.Title />
 
@@ -46,7 +47,7 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
         </ul>
       </Nav>
 
-      <div className={clsx("flex flex-col px-8")}>
+      <div className={clsx("flex flex-col px-8 flex-1")}>
         <ThemeSwitch className="absolute top-7 right-5" />
         {children}
       </div>
