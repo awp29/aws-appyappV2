@@ -20,6 +20,12 @@ const schema = a.schema({
       email: a.string(),
     })
     .authorization((allow) => [allow.guest()]),
+
+  Team: a
+    .model({
+      name: a.string(),
+    })
+    .authorization((allow) => [allow.guest()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
