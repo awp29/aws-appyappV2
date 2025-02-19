@@ -15,4 +15,5 @@ const HelpPage = () => {
     </DefaultLayout>
   );
 };
+
 export default HelpPage;

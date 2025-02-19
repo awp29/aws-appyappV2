@@ -16,7 +16,7 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
   const { children } = props;
 
   return (
-    <div className="relative flex w-full">
+    <div className="relative flex w-full pb-12">
       <Nav>
         <Nav.Title />
 

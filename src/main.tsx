@@ -7,15 +7,20 @@ import { Provider } from "./provider.tsx";
 import "@/styles/globals.css";
 import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 Amplify.configure(outputs);
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider>
-        <App />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider>
+          <App />
+        </Provider>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
