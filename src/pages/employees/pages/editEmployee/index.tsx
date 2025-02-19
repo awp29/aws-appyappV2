@@ -2,7 +2,7 @@ import React from "react";
 import DefaultLayout from "@/layouts/default";
 import PageHeader from "@/components/page/pageHeader";
 import { Breadcrumbs, BreadcrumbItem } from "@heroui/breadcrumbs";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getEmployee, updateEmployee } from "./api";
 import EmployeeForm from "../components/employeeForm";
@@ -10,6 +10,7 @@ import EmployeeForm from "../components/employeeForm";
 const EditEmployeePage: React.FC = () => {
   const { employeeId } = useParams<{ employeeId: string }>();
 
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const getEmployeeQuery = useQuery({
@@ -21,10 +22,15 @@ const EditEmployeePage: React.FC = () => {
     mutationFn: updateEmployee,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getEmployee", employeeId] });
+      navigate("/employees");
     },
   });
 
-  if (getEmployeeQuery.data === undefined) {
+  // AP-TODO: This is awful fix it
+  if (
+    getEmployeeQuery.data === undefined ||
+    getEmployeeQuery.data.data === null
+  ) {
     return null;
   }
 

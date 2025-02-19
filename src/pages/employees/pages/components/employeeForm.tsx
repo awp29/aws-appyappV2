@@ -9,6 +9,7 @@ import { Employee } from "@/types";
 import clsx from "clsx";
 import { Divider } from "@heroui/divider";
 import { Repository } from "aws-cdk-lib/aws-ecr";
+import { useNavigate } from "react-router-dom";
 
 const roles = [
   { key: "customerSupport", label: "Customer Support" },
@@ -39,6 +40,7 @@ interface EmployeeFormProps {
 
 const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
   const { defaultValues, onSubmit, isLoading } = props;
+  const navigate = useNavigate();
 
   const {
     register,
@@ -50,6 +52,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
     <>
       <Divider className="mb-12" />
 
+      {/* AP-TODO: FORM VALIDATION */}
       <Form className={clsx("max-w-lg")} onSubmit={handleSubmit(onSubmit)}>
         <div className={clsx("flex flex-col gap-8 w-full mb-12")}>
           <Input {...register("firstName")} label="First name" size="sm" />
@@ -91,8 +94,8 @@ const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
           <Button color="primary" type="submit" isLoading={isLoading}>
             Submit
           </Button>
-          <Button type="reset" variant="bordered">
-            Reset
+          <Button variant="bordered" onPress={() => navigate("/employees")}>
+            Cancel
           </Button>
         </div>
       </Form>

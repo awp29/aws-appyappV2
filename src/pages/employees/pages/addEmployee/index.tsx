@@ -2,14 +2,19 @@ import PageHeader from "@/components/page/pageHeader";
 import DefaultLayout from "@/layouts/default";
 import React from "react";
 import { Breadcrumbs, BreadcrumbItem } from "@heroui/breadcrumbs";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createEmployee } from "./api";
 import EmployeeForm from "../components/employeeForm";
 
 const AddEmployeePage: React.FC = () => {
+  const naigate = useNavigate();
+
   const createEmployeeMutation = useMutation({
     mutationFn: createEmployee,
+    onSuccess: () => {
+      naigate("/employees");
+    },
   });
 
   return (
