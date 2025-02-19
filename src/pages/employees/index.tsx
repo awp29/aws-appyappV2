@@ -58,7 +58,12 @@ const EmployeesPage = () => {
               <span>{employee.firstName}</span>
               <span>{employee.email}</span>
 
-              <Button color="primary" variant="flat" size="sm">
+              <Button
+                color="primary"
+                variant="flat"
+                size="sm"
+                onPress={() => navigate(`/employees/edit/${employee.id}`)}
+              >
                 Edit
               </Button>
 

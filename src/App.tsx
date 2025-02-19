@@ -5,6 +5,7 @@ import EmployeesPage from "@/pages/employees/index";
 import SettingsPage from "./pages/settings";
 import HelpPage from "@/pages/help/index";
 import AddEmployeePage from "./pages/employees/pages/addEmployee";
+import EditEmployeePage from "./pages/employees/pages/editEmployee";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
       <Route element={<DashboardPage />} path="/" />
       <Route element={<EmployeesPage />} path="/employees" />
       <Route element={<AddEmployeePage />} path="/employees/add" />
+      <Route
+        element={<EditEmployeePage />}
+        path="/employees/edit/:employeeId"
+      />
       <Route element={<SettingsPage />} path="/settings" />
       <Route element={<HelpPage />} path="/help" />
     </Routes>
